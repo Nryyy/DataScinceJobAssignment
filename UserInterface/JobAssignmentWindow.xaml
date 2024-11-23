@@ -1,0 +1,181 @@
+﻿<Window x:Class="UserInterface.JobAssignmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserInterface"
+        mc:Ignorable="d"
+        Title="Job Assignment Management" Height="600" Width="900"
+        Background="#F8F9FA">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Section: Form -->
+        <StackPanel Grid.Column="0" VerticalAlignment="Top">
+            <TextBlock Text="Job Assignment Details" 
+                       FontSize="20" 
+                       FontWeight="Bold" 
+                       Margin="0,0,0,20" />
+
+            <!-- Job Selection -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Select Job" 
+                           FontSize="14" 
+                           Foreground="#555" />
+                <ComboBox x:Name="JobComboBox" 
+                          Width="300" 
+                          Height="35" 
+                          Background="White" 
+                          BorderBrush="#DADADA" 
+                          BorderThickness="1" 
+                          DisplayMemberPath="Title" 
+                          FontSize="14" />
+            </StackPanel>
+
+            <!-- Employee Selection -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Select Employee" 
+                           FontSize="14" 
+                           Foreground="#555" />
+                <ComboBox x:Name="EmployeeComboBox" 
+                          Width="300" 
+                          Height="35" 
+                          Background="White" 
+                          BorderBrush="#DADADA" 
+                          BorderThickness="1" 
+                          DisplayMemberPath="Residence" 
+                          FontSize="14" />
+            </StackPanel>
+
+            <!-- Company Selection -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Select Company" 
+                           FontSize="14" 
+                           Foreground="#555" />
+                <ComboBox x:Name="CompanyComboBox" 
+                          Width="300" 
+                          Height="35" 
+                          Background="White" 
+                          BorderBrush="#DADADA" 
+                          BorderThickness="1" 
+                          DisplayMemberPath="Location" 
+                          FontSize="14" />
+            </StackPanel>
+
+            <!-- Work Setting -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Select Work Setting" 
+                           FontSize="14" 
+                           Foreground="#555" />
+                <ComboBox x:Name="WorkSettingComboBox" 
+                          Width="300" 
+                          Height="35" 
+                          Background="White" 
+                          BorderBrush="#DADADA" 
+                          BorderThickness="1" 
+                          DisplayMemberPath="Setting" 
+                          FontSize="14" />
+            </StackPanel>
+
+            <!-- Work Year -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Work Year" 
+                           FontSize="14" 
+                           Foreground="#555" />
+                <TextBox x:Name="WorkYearTextBox" 
+                         Width="300" 
+                         Height="35" 
+                         Background="White" 
+                         BorderBrush="#DADADA" 
+                         BorderThickness="1" 
+                         FontSize="14" />
+            </StackPanel>
+
+            <!-- Salary -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Salary" 
+                           FontSize="14" 
+                           Foreground="#555" />
+                <TextBox x:Name="SalaryTextBox" 
+                         Width="300" 
+                         Height="35" 
+                         Background="White" 
+                         BorderBrush="#DADADA" 
+                         BorderThickness="1" 
+                         FontSize="14" />
+            </StackPanel>
+
+            <!-- Salary Currency -->
+            <StackPanel Margin="0,0,0,20">
+                <TextBlock Text="Salary Currency" 
+                           FontSize="14" 
+                           Foreground="#555" />
+                <TextBox x:Name="SalaryCurrencyTextBox" 
+                         Width="300" 
+                         Height="35" 
+                         Background="White" 
+                         BorderBrush="#DADADA" 
+                         BorderThickness="1" 
+                         FontSize="14" />
+            </StackPanel>
+
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Content="Add" 
+                        Width="100" 
+                        Height="40" 
+                        Background="#4CAF50" 
+                        Foreground="White" 
+                        FontSize="14" 
+                        Margin="0,0,10,0" 
+                        Click="AddJobAssignmentButton_Click" />
+                <Button Content="Update" 
+                        Width="100" 
+                        Height="40" 
+                        Background="#FFC107" 
+                        Foreground="White" 
+                        FontSize="14" 
+                        Margin="0,0,10,0" 
+                        Click="UpdateJobAssignmentButton_Click" />
+                <Button Content="Delete" 
+                        Width="100" 
+                        Height="40" 
+                        Background="#F44336" 
+                        Foreground="White" 
+                        FontSize="14" 
+                        Click="DeleteJobAssignmentButton_Click" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Right Section: List -->
+        <StackPanel Grid.Column="1" Margin="20,0,0,0">
+            <TextBlock Text="Job Assignments List" 
+                       FontSize="20" 
+                       FontWeight="Bold" 
+                       Margin="0,0,0,20" />
+            <ListBox x:Name="JobAssignmentsListBox" 
+                     Width="auto" 
+                     Height="450" 
+                     Background="White" 
+                     BorderBrush="#DADADA" 
+                     BorderThickness="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Margin="5">
+                            <TextBlock Text="{Binding Job.Title}" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Employee.Residence}" />
+                            <TextBlock Text="{Binding Company.Location}" />
+                            <TextBlock Text="{Binding WorkSetting.Setting}" />
+                            <TextBlock Text="{Binding WorkYear}" />
+                            <TextBlock Text="{Binding Salary, StringFormat=C}" />
+                            <TextBlock Text="{Binding SalaryCurrency}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using DataManagment.Helpers;
+using DataManagment.Repositories;
 
 namespace UserInterface
 {
@@ -13,6 +14,8 @@ namespace UserInterface
             InitializeComponent();
             var context = new DataManagment.AppContext();
             _csvDataParser = new CsvDataParser(context);
+            _companyRepository = new CompanyRepository(context);
+            LoadCompanies();
         }
 
         private void ParseCsvButton_Click(object sender, RoutedEventArgs e)
@@ -45,6 +48,32 @@ namespace UserInterface
         {
             EmployeeManagementWindow employeeManagementWindow = new EmployeeManagementWindow();
             employeeManagementWindow.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            JobAssignmentWindow jobAssignmentWindow = new JobAssignmentWindow();
+            jobAssignmentWindow.Show();
+        }
+
+        private readonly CompanyRepository _companyRepository;
+
+        private void LoadCompanies()
+        {
+            var companies = _companyRepository.Get();
+            CompaniesListBox.ItemsSource = companies;
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            _companyRepository.Dispose();
+            base.OnClosed(e);
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            FilterWindow filterWindow = new FilterWindow();
+            filterWindow.Show();
         }
     }
 }
