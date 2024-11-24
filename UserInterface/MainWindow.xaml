@@ -56,7 +56,7 @@
         </StackPanel>
 
         <!-- Companies List -->
-        <GroupBox Header="Companies" Grid.Column="0" Grid.Row="1">
+        <GroupBox Header="Companies" Grid.Column="0" Grid.Row="1" Margin="0,0,10,10">
             <ListBox x:Name="CompaniesListBox" Background="#ffffff" BorderBrush="#cccccc">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -78,7 +78,7 @@
         </GroupBox>
 
         <!-- Work Settings List -->
-        <GroupBox Header="Work Settings" Grid.Column="0" Grid.Row="2">
+        <GroupBox Header="Work Settings" Grid.Column="0" Grid.Row="2" Margin="0,0,10,0">
             <ListBox x:Name="WorkSettingsListBox" Background="#ffffff" BorderBrush="#cccccc">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -96,7 +96,7 @@
         </GroupBox>
 
         <!-- Buttons Section -->
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="10,0,0,0">
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalAlignment="Top">
             <Label Content="Management Options:" />
             <Button Content="Job Management" Click="Button_Click" />
             <Button Content="Employee Management" Click="Button_Click_1" />

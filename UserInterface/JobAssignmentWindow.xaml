@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UserInterface"
         mc:Ignorable="d"
-        Title="Job Assignment Management" Height="600" Width="900"
-        Background="#F8F9FA">
+        Title="Job Assignment Management" Height="700" Width="914"
+        Background="#F8F9FA"
+        ResizeMode="NoResize">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -109,7 +110,7 @@
             </StackPanel>
 
             <!-- Salary Currency -->
-            <StackPanel Margin="0,0,0,20">
+            <StackPanel Margin="0,0,0,10">
                 <TextBlock Text="Salary Currency" 
                            FontSize="14" 
                            Foreground="#555" />
@@ -122,8 +123,22 @@
                          FontSize="14" />
             </StackPanel>
 
+            <!-- Salary in USD -->
+            <StackPanel Margin="0,0,0,20">
+                <TextBlock Text="Salary in USD" 
+                           FontSize="14" 
+                           Foreground="#555" />
+                <TextBox x:Name="SalaryInUSDTextBox" 
+                         Width="300" 
+                         Height="35" 
+                         Background="White" 
+                         BorderBrush="#DADADA" 
+                         BorderThickness="1" 
+                         FontSize="14" />
+            </StackPanel>
+
             <!-- Buttons -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,20,0,0">
                 <Button Content="Add" 
                         Width="100" 
                         Height="40" 
@@ -158,20 +173,29 @@
                        Margin="0,0,0,20" />
             <ListBox x:Name="JobAssignmentsListBox" 
                      Width="auto" 
-                     Height="450" 
+                     Height="556" 
                      Background="White" 
                      BorderBrush="#DADADA" 
                      BorderThickness="1">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical" Margin="5">
-                            <TextBlock Text="{Binding Job.Title}" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Employee.Residence}" />
-                            <TextBlock Text="{Binding Company.Location}" />
-                            <TextBlock Text="{Binding WorkSetting.Setting}" />
-                            <TextBlock Text="{Binding WorkYear}" />
-                            <TextBlock Text="{Binding Salary, StringFormat=C}" />
-                            <TextBlock Text="{Binding SalaryCurrency}" />
+                            <TextBlock Text="Job Title:" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Job.Title}" Margin="0,0,0,5" />
+                            <TextBlock Text="Employee Residence:" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Employee.Residence}" Margin="0,0,0,5" />
+                            <TextBlock Text="Company Location:" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Company.Location}" Margin="0,0,0,5" />
+                            <TextBlock Text="Work Setting:" FontWeight="Bold" />
+                            <TextBlock Text="{Binding WorkSetting.Setting}" Margin="0,0,0,5" />
+                            <TextBlock Text="Work Year:" FontWeight="Bold" />
+                            <TextBlock Text="{Binding WorkYear}" Margin="0,0,0,5" />
+                            <TextBlock Text="Salary:" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Salary, StringFormat=C}" Margin="0,0,0,5" />
+                            <TextBlock Text="Salary Currency:" FontWeight="Bold" />
+                            <TextBlock Text="{Binding SalaryCurrency}" Margin="0,0,0,5" />
+                            <TextBlock Text="Salary in USD:" FontWeight="Bold" />
+                            <TextBlock Text="{Binding SalaryInUSD}" Margin="0,0,0,5" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

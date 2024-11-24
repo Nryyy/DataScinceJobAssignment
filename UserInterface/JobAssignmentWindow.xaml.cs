@@ -57,6 +57,7 @@ namespace UserInterface
             var workYear = int.Parse(WorkYearTextBox.Text);
             var salary = decimal.Parse(SalaryTextBox.Text);
             var salaryCurrency = SalaryCurrencyTextBox.Text;
+            var salaryInUSD = decimal.Parse(SalaryInUSDTextBox.Text);
 
             if (selectedJob == null || selectedEmployee == null || selectedCompany == null || selectedWorkSetting == null)
             {
@@ -72,7 +73,8 @@ namespace UserInterface
                 WorkSettingId = selectedWorkSetting.Id,
                 WorkYear = workYear,
                 Salary = salary,
-                SalaryCurrency = salaryCurrency
+                SalaryCurrency = salaryCurrency,
+                SalaryInUSD = salaryInUSD
             };
 
             _jobAssignmentRepository.Create(jobAssignment);
@@ -90,6 +92,7 @@ namespace UserInterface
                 var workYear = int.Parse(WorkYearTextBox.Text);
                 var salary = decimal.Parse(SalaryTextBox.Text);
                 var salaryCurrency = SalaryCurrencyTextBox.Text;
+                var salaryInUSD = decimal.Parse(SalaryInUSDTextBox.Text);
 
                 if (selectedJob == null || selectedEmployee == null || selectedCompany == null || selectedWorkSetting == null)
                 {
@@ -104,6 +107,7 @@ namespace UserInterface
                 selectedJobAssignment.WorkYear = workYear;
                 selectedJobAssignment.Salary = salary;
                 selectedJobAssignment.SalaryCurrency = salaryCurrency;
+                selectedJobAssignment.SalaryInUSD = salaryInUSD;
 
                 _jobAssignmentRepository.Update(selectedJobAssignment);
                 LoadJobAssignments();
