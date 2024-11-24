@@ -2,12 +2,15 @@
 using System.Windows;
 using DataManagment.Helpers;
 using DataManagment.Repositories;
+using Models;
 
 namespace UserInterface
 {
     public partial class MainWindow : Window
     {
         private readonly CsvDataParser _csvDataParser;
+        private readonly CompanyRepository _companyRepository;
+        private readonly WorkSettingRepository _workSettingRepository;
 
         public MainWindow()
         {
@@ -15,7 +18,9 @@ namespace UserInterface
             var context = new DataManagment.AppContext();
             _csvDataParser = new CsvDataParser(context);
             _companyRepository = new CompanyRepository(context);
+            _workSettingRepository = new WorkSettingRepository(context);
             LoadCompanies();
+            LoadWorkSettings();
         }
 
         private void ParseCsvButton_Click(object sender, RoutedEventArgs e)
@@ -56,7 +61,11 @@ namespace UserInterface
             jobAssignmentWindow.Show();
         }
 
-        private readonly CompanyRepository _companyRepository;
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            FilterWindow filterWindow = new FilterWindow();
+            filterWindow.Show();
+        }
 
         private void LoadCompanies()
         {
@@ -64,16 +73,17 @@ namespace UserInterface
             CompaniesListBox.ItemsSource = companies;
         }
 
+        private void LoadWorkSettings()
+        {
+            var workSettings = _workSettingRepository.Get();
+            WorkSettingsListBox.ItemsSource = workSettings;
+        }
+
         protected override void OnClosed(EventArgs e)
         {
             _companyRepository.Dispose();
+            _workSettingRepository.Dispose();
             base.OnClosed(e);
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            FilterWindow filterWindow = new FilterWindow();
-            filterWindow.Show();
         }
     }
 }

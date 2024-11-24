@@ -23,7 +23,16 @@
                      Height="350" 
                      Background="White" 
                      BorderBrush="#DADADA" 
-                     BorderThickness="1" />
+                     BorderThickness="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}" />
+                            <TextBlock Text="{Binding Category.Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
 
         <!-- Form and Actions Section -->
@@ -59,8 +68,13 @@
                          BorderBrush="#DADADA" 
                          BorderThickness="1" 
                          FontSize="14" 
-                         DisplayMemberPath="Name" 
-                         SelectionMode="Multiple" />
+                         SelectionMode="Multiple">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
 
             <!-- Buttons -->

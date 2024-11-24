@@ -41,7 +41,7 @@
                           Background="White" 
                           BorderBrush="#DADADA" 
                           BorderThickness="1" 
-                          DisplayMemberPath="Name" 
+                          DisplayMemberPath="Description" 
                           FontSize="14" />
             </StackPanel>
 
@@ -80,12 +80,24 @@
                        FontWeight="Bold" 
                        Margin="0,0,0,10" />
             <ListBox x:Name="EmployeesListBox" 
-                     DisplayMemberPath="Residence" 
                      Width="auto" 
                      Height="350" 
                      Background="White" 
                      BorderBrush="#DADADA" 
-                     BorderThickness="1" />
+                     BorderThickness="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="ID:" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Id}" Margin="0,0,0,5" />
+                            <TextBlock Text="Residence:" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Residence}" Margin="0,0,0,5" />
+                            <TextBlock Text="Experience Level:" FontWeight="Bold" />
+                            <TextBlock Text="{Binding ExperienceLevel.Description}" Margin="0,0,0,10" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </Grid>
 </Window>

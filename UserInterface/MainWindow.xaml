@@ -3,21 +3,105 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UserInterface"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <ListBox x:Name="CompaniesListBox" 
-         DisplayMemberPath="Location" 
-         Width="auto" 
-         Height="auto" 
-         Margin="33,42,555,228" />
-        
-        <TextBox Name="FilePathTextBox" Width="300" Height="30" Margin="10"/>
-        <Button Content="Parse CSV" Width="100" Height="30" Margin="350,259,350,145" Click="ParseCsvButton_Click"/>
-        <Button Content="JobManagment" HorizontalAlignment="Left" Margin="416,75,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <Button Content="EmoloyeeManagment" HorizontalAlignment="Left" Margin="416,100,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
-        <Button Content="JobAssignmentManagment" HorizontalAlignment="Left" Margin="416,125,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
-        <Button Content="Filter" HorizontalAlignment="Left" Margin="416,150,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
+        Title="MainWindow" Height="500" Width="850" Background="#f0f4f8">
+    <Window.Resources>
+        <!-- Кольорові стилі -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#007acc" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Height" Value="35" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+
+        <Style TargetType="GroupBox">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#007acc" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Padding" Value="10" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- File Path Section -->
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <Label Content="File Path:" VerticalAlignment="Center" />
+            <TextBox Name="FilePathTextBox" Width="300" />
+            <Button Content="Parse CSV" Click="ParseCsvButton_Click" />
+        </StackPanel>
+
+        <!-- Companies List -->
+        <GroupBox Header="Companies" Grid.Column="0" Grid.Row="1">
+            <ListBox x:Name="CompaniesListBox" Background="#ffffff" BorderBrush="#cccccc">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#dddddd" BorderThickness="1" Margin="5" Padding="5" CornerRadius="5" Background="#f9f9f9">
+                            <StackPanel>
+                                <TextBlock Text="ID:" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Id}" Margin="0,0,0,5" />
+                                <TextBlock Text="Location:" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Location}" Margin="0,0,0,5" />
+                                <TextBlock Text="Size:" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Size.Description}" Margin="0,0,0,5" />
+                                <TextBlock Text="Employment Type:" FontWeight="Bold" />
+                                <TextBlock Text="{Binding EmploymentType.Description}" Margin="0,0,0,5" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+
+        <!-- Work Settings List -->
+        <GroupBox Header="Work Settings" Grid.Column="0" Grid.Row="2">
+            <ListBox x:Name="WorkSettingsListBox" Background="#ffffff" BorderBrush="#cccccc">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#dddddd" BorderThickness="1" Margin="5" Padding="5" CornerRadius="5" Background="#f9f9f9">
+                            <StackPanel>
+                                <TextBlock Text="ID:" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Id}" Margin="0,0,0,5" />
+                                <TextBlock Text="Setting:" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Setting}" Margin="0,0,0,5" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+
+        <!-- Buttons Section -->
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="10,0,0,0">
+            <Label Content="Management Options:" />
+            <Button Content="Job Management" Click="Button_Click" />
+            <Button Content="Employee Management" Click="Button_Click_1" />
+            <Button Content="Job Assignment Management" Click="Button_Click_2" />
+            <Button Content="Filter" Click="Button_Click_3" />
+        </StackPanel>
     </Grid>
 </Window>
