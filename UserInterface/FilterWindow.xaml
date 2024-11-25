@@ -48,6 +48,7 @@
             </ComboBox>
 
             <Button Content="Apply Filter" Click="ApplyFilterButton_Click" Margin="0,20,0,0" Width="150" Height="40" Background="#4CAF50" Foreground="White" FontSize="14" FontWeight="Bold" BorderBrush="#388E3C" BorderThickness="1" />
+            <Button Content="Generate Excel Report" Click="GenerateExcelReportButton_Click" Margin="0,10,0,0" Width="200" Height="40" Background="#2196F3" Foreground="White" FontSize="14" FontWeight="Bold" BorderBrush="#1976D2" BorderThickness="1" />
         </StackPanel>
 
         <!-- Filtered Results Section -->
